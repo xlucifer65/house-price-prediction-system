@@ -1,0 +1,11 @@
+.env
+.git
+.gitignore
+data/
+*.joblib
+__pycache__/
+*.pyc
+.venv/
+venv/
+mlruns/
+gx/uncommitted/

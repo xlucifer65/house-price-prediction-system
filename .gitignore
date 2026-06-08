@@ -216,3 +216,16 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project-specific
+.env
+data/raw_data/*
+data/good_data/*
+data/bad_data/*
+data/archived_data/*
+!data/**/.gitkeep
+*.joblib
+model_service/app/artifacts/
+gx/uncommitted/
+mlruns/
+.DS_Store
