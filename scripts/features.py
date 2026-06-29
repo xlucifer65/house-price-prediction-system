@@ -30,6 +30,48 @@ import pandas as pd
 TARGET = "SalePrice"
 ID_COL = "Id"
 
+# ── Feature contract (imported by API, DAGs, GX, error injector) ──────────────
+
+NUMERIC_FEATURES = {
+    "OverallQual":  {"min": 1,    "max": 10},
+    "GrLivArea":    {"min": 334,  "max": 5642},
+    "GarageCars":   {"min": 0,    "max": 4},
+    "GarageArea":   {"min": 0,    "max": 1418},
+    "TotalBsmtSF":  {"min": 0,    "max": 6110},
+    "FullBath":     {"min": 0,    "max": 3},
+    "YearBuilt":    {"min": 1872, "max": 2010},
+    "TotRmsAbvGrd": {"min": 2,    "max": 14},
+    "Fireplaces":   {"min": 0,    "max": 3},
+    "LotArea":      {"min": 1300, "max": 215245},
+}
+
+CATEGORICAL_FEATURES = {
+    "MSZoning": {
+        "values": ["C (all)", "FV", "RH", "RL", "RM"]
+    },
+    "Neighborhood": {
+        "values": [
+            "Blmngtn", "Blueste", "BrDale", "BrkSide", "ClearCr",
+            "CollgCr", "Crawfor", "Edwards", "Gilbert", "IDOTRR",
+            "MeadowV", "Mitchel", "NAmes", "NPkVill", "NWAmes",
+            "NoRidge", "NridgHt", "OldTown", "SWISU", "Sawyer",
+            "SawyerW", "Somerst", "StoneBr", "Timber", "Veenker",
+        ]
+    },
+    "BldgType": {
+        "values": ["1Fam", "2fmCon", "Duplex", "Twnhs", "TwnhsE"]
+    },
+    "HouseStyle": {
+        "values": ["1.5Fin", "1.5Unf", "1Story", "2.5Fin", "2.5Unf", "2Story", "SFoyer", "SLvl"]
+    },
+    "SaleCondition": {
+        "values": ["Abnorml", "AdjLand", "Alloca", "Family", "Normal", "Partial"]
+    },
+}
+
+# Flat list of all 15 feature names — the shared contract
+FEATURE_COLUMNS = list(NUMERIC_FEATURES.keys()) + list(CATEGORICAL_FEATURES.keys())
+
 # Quality/condition columns recorded as Po < Fa < TA < Gd < Ex. NaN means the
 # feature is absent (e.g. no basement), which is a meaningful 0 here.
 QUALITY_MAP = {"Po": 1, "Fa": 2, "TA": 3, "Gd": 4, "Ex": 5}
