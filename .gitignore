@@ -229,3 +229,5 @@ model_service/app/artifacts/
 gx/uncommitted/
 mlruns/
 .DS_Store
+data/processed/*
+!data/processed/.gitkeep
